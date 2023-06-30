@@ -1,0 +1,10 @@
+library(caret)
+library(e1071)
+set.seed(120)
+split=createDataPartition(iris$Species,p=.7,list=FALSE,times=1)
+train=iris[split,]
+test=iris[-split,]
+model=svm(Species~.,train,method='class',kernel='linear')
+predictions=predict(model,test,type='class')
+cm=(confusionMatrix(test$Species,predictions))$table
+print(cm)

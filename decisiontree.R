@@ -1,0 +1,13 @@
+library(caret)
+library(rpart.plot)
+set.seed(50)
+split=createDataPartition(biopsy$class,p=.7,list=FALSE,times=1)
+train=biopsy[split,]
+test=biopsy[-split,]
+model=rpart(class~V1+V2+V3+V4,data=train,method='class')
+rpart.plot(model)
+head(test)
+predictions=predict(model,test,type='class')
+print(predicted_labels)
+cm=(confusionMatrix(test$class,predictions))$table
+print(cm)

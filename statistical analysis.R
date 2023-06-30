@@ -1,0 +1,6 @@
+data(iris)
+t.test(iris$Sepal.Width,mu=3)
+t.test(iris$Sepal.Width,iris$Petal.Length,mu=5,var.equal=T)
+t.test(iris$Sepal.Width,iris$Petal.Length,mu=5,paired=T)
+model=aov(iris$Sepal.Length~iris$Petal.Length)
+summary(model)
